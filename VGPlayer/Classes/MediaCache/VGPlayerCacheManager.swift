@@ -39,13 +39,7 @@ open class VGPlayerCacheManager: NSObject {
     }
     
     static public func cacheFilePath(for url: URL) -> String {
-        if let cacheFolder = url.lastPathComponent.components(separatedBy: ".").first {
-            let cacheFilePath = (cacheDirectory().appending("/\(cacheFolder)") as NSString).appendingPathComponent(url.lastPathComponent)
-            print(cacheFilePath)
-            return cacheFilePath
-        }
-        
-        return (cacheDirectory() as NSString).appendingPathComponent(url.lastPathComponent)
+      return cacheDirectory().appending(url.path)
     }
     
     static public func cacheConfiguration(forURL url: URL) -> VGPlayerCacheMediaConfiguration {
